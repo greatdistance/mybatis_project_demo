@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--加载属性文档-->
+    <properties resource="jdbc.properties"></properties>
+    <!--  <typeAliases>
+          &lt;!&ndash;别名配置给类起一个别名
+          <typeAlias type="com.xaufe.demo.mapper.UserMapper" alias="userMapper"></typeAlias>&ndash;&gt;
+          &lt;!&ndash;包扫描器：别名是包下的类名不区分大小写&ndash;&gt;
+          <package name="com.xaufe.demo.pojo"/>
+      </typeAliases>-->
+    <!--设置运行环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--事物管理-->
+            <transactionManager type="JDBC"/>
+            <!--数据库连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--  需要加载 一下Users.xml文件 -->
+    <mappers>
+        <mapper resource="mybatis/User.xml"/>
+    </mappers>
+
+    <!--   <mappers>
+          &lt;!&ndash; <mapper resource="com/xaufe/demo/pojo/User.xml" />&ndash;&gt;
+          &lt;!&ndash; <mapper resource="com/xaufe/demo/mapper/UserMapper.xml" />&ndash;&gt;
+           &lt;!&ndash;映射文件，class扫描器：
+               1、接口文件必须与映射文件在同一目录下
+               2、接口文件名必须与映射文件名一致
+           &ndash;&gt;
+
+        &lt;!&ndash;  <mapper class="com.xaufe.demo.mapper.UserMapper"/>&ndash;&gt;
+
+           &lt;!&ndash;映射文件包扫描：
+               1、接口文件必须与映射文件在同一目录下
+               2、接口文件名必须与映射文件名一致
+           &ndash;&gt;
+           <package name="com.xaufe.demo.mapper"/>
+       </mappers>-->
+</configuration>

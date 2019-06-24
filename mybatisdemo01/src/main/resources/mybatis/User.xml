@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace:命名空间，用于隔离sql语句-->
+<mapper namespace="user">
+    <select id="getUserById" parameterType="int" resultType="edu.xufe.mybatis.pojo.User">
+        SELECT
+          `id`,
+          `username`,
+          `birthday`,
+          `sex`,
+          `address`
+        FROM `user`
+        WHERE id=#{id};
+    </select>
+    <!--根据用户名模糊查询用户列表-->
+    <select id="getUserByUsername" parameterType="string" resultType="edu.xufe.mybatis.pojo.User">
+        SELECT
+          `id`,
+          `username`,
+          `birthday`,
+          `sex`,
+          `address`
+        FROM `user`
+        WHERE username LIKE '%${value}%';
+    </select>
+    <!--添加用户-->
+    <!--
+        selectKey： 配置主键返回
+        keyProperty：要绑定pojo属性，这里只user.id
+        resultType: 属性数据类型
+        order: selectKey的执行时间 AFTER 之后执行  BEFORE 之前执行
+    -->
+
+    <!--
+        useGeneratedKeys: 标识插入使用自增id
+        keyProperty: 与useGeneratedKeys配套使用，用于绑定主键接收的pojo属性
+    -->
+    <insert id="insertUser" parameterType="edu.xufe.mybatis.pojo.User" useGeneratedKeys="true" keyProperty="id">
+        <!--<selectKey keyProperty="id" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>-->
+        INSERT INTO `user` (
+        `username`,
+        `birthday`,
+        `sex`,
+        `address`
+        )
+        VALUES
+        (
+        #{username},
+        #{birthday},
+        #{sex},
+        #{address}
+        ) ;
+    </insert>
+
+    <!--更新用户-->
+    <update id="updateUser" parameterType="edu.xufe.mybatis.pojo.User">
+        UPDATE
+          `user`
+        SET
+          `username` = #{username},
+          `birthday` = #{birthday},
+          `sex` = #{sex},
+          `address` = #{address}
+        WHERE `id` = #{id} ;
+    </update>
+
+</mapper>
