@@ -634,4 +634,4 @@ public class SqlSessionFactoryUtil {
 
 1. Mybatis架构图
 
-   ![Mybatis架构图](image\mybatis_structure_chart.jpg)
+   ![Mybatis架构图](https://raw.githubusercontent.com/greatdistance/mybatis_project_demo/master/mybatisdemo01/image/mybatis_structure_chart.jpg)
